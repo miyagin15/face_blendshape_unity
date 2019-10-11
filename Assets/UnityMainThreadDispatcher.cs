@@ -31,26 +31,67 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
 
     public float eye_face;
 
+    [System.Serializable]
+    class FaceBlendShape
+    {
+        public float browOuterUpRight, mouthLowerDownLeft, eyeLookUpLeft, cheekPuff, eyeWideLeft, mouthUpperUpLeft, mouthPucker, mouthDimpleRight, mouthSmileRight, mouthShrugLower, eyeLookDownLeft, browOuterUpLeft, eyeBlinkLeft, mouthPressLeft, tongueOut, mouthFrownRight, jawLeft, mouthRight, cheekSquintRight, jawRight, mouthClose, mouthRollLower, eyeSquintLeft, eyeLookUpRight, mouthStretchRight, mouthPressRight, eyeBlinkRight, eyeSquintRight, eyeLookInRight, mouthLeft, mouthRollUpper, noseSneerLeft, eyeLookDownRight, browDownRight, browDownLeft, mouthStretchLeft, mouthDimpleLeft, mouthLowerDownRight, jawOpen, browInnerUp, mouthFunnel, mouthFrownLeft, eyeWideRight, jawForward, eyeLookInLeft, mouthShrugUpper, eyeLookOutLeft, eyeLookOutRight, mouthSmileLeft, cheekSquintLeft, mouthUpperUpRight, noseSneerRight;
+
+        public string[] faceList = {"browOuterUpRight","mouthLowerDownLeft","eyeLookUpLeft","cheekPuff","eyeWideLeft","mouthUpperUpLeft","mouthPucker","mouthDimpleRight","mouthSmileRight","mouthShrugLower","eyeLookDownLeft","browOuterUpLeft","eyeBlinkLeft","mouthPressLeft","tongueOut","mouthFrownRight","jawLeft","mouthRight","cheekSquintRight","jawRight","mouthClose","mouthRollLower","eyeSquintLeft","eyeLookUpRight","mouthStretchRight","mouthPressRight","eyeBlinkRight","eyeSquintRight","eyeLookInRight","mouthLeft","mouthRollUpper","noseSneerLeft","eyeLookDownRight","browDownRight","browDownLeft","mouthStretchLeft","mouthDimpleLeft","mouthLowerDownRight","jawOpen","browInnerUp","mouthFunnel","mouthFrownLeft","eyeWideRight","jawForward","eyeLookInLeft","mouthShrugUpper","eyeLookOutLeft","eyeLookOutRight","mouthSmileLeft","cheekSquintLeft","mouthUpperUpRight","noseSneerRight"};
+
+        public  void SetDate(int order ,float data){
+            faceList[order] = data;
+            cheekPuff = data;
+            
+        }
+	}
+    [SerializeField] FaceBlendShape faceBlend;
     public float[] face_list　= new float[65];
 
     private bool nameListBool = false;
 
-    public void Update() {
-        var net = NetworkMeshAnimator.Instance;
+    public string[] name_all=new string[65];
 
-		if(!nameListBool){
-            var net1 = NetworkMeshAnimator.Instance;
-            var nameList = net1.blendShapeName;
-            Debug.Log(nameList);
-            Debug.Log(nameList.Count);
-            for (int i = 0; i < nameList.Count; i++)
-            {
-                Debug.Log(nameList[i]);
-				if(i>19){
-                    nameListBool = true;
+    
+
+    /*
+	    public void start(){
+        faceblendshape = new FaceBlendShape();
+    }
+	 */
+
+    public void Update() {
+        FaceBlendShape faceblendshape = new FaceBlendShape();
+        var net = NetworkMeshAnimator.Instance;
+        var nameList = net.blendShapeName;
+
+		for (int i = 0; i < nameList.Count; i++){
+			faceblendshape.SetDate(i,net.blendShapeList[i]);
+		}
+        Debug.Log(faceblendshape.cheekPuff);
+
+
+
+        /*
+                if(!nameListBool){
+                    var net1 = NetworkMeshAnimator.Instance;
+                    var nameList = net1.blendShapeName;
+                    Debug.Log(nameList);
+                    Debug.Log(nameList.Count);
+                    for (int i = 0; i < nameList.Count; i++)
+                    {
+
+                        Debug.Log(nameList[i]);
+                        name_all[i] = nameList[i];
+
+                        if(i>19){
+                            nameListBool = true;
+                        }
+
+                    }
+                    Debug.Log(string.Join(",", name_all));
                 }
-            }
-        }
+         */
+
 
 
         //eye_face = net.temp;
