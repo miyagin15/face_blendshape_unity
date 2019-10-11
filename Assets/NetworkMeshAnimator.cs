@@ -93,7 +93,8 @@ public class NetworkMeshAnimator {
 
 				var index = meshTarget.sharedMesh.GetBlendShapeIndex (mappedShapeName);
                 temp = weight;
-                blendShapeList[index] = weight;
+            	//Debug.Log(index);
+                blendShapeList[index+1] = weight;
                 //Debug.Log(mappedShapeName+"_"+weight);
 
                 if (index > -1) {
