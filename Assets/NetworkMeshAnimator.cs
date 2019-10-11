@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEditor;
-
+using System.Collections.Generic;
 public class NetworkMeshAnimator {
 
 	private UDPServer listner;
@@ -11,7 +11,10 @@ public class NetworkMeshAnimator {
 	private bool isAcceptingMessages = false;
 
     public float[] blendShapeList=new float[65];
+    public  List<String> blendShapeName= new List<string>();
     public float temp;
+
+    private bool nameListBool = false;
 
     private static NetworkMeshAnimator instance;
 
@@ -79,14 +82,16 @@ public class NetworkMeshAnimator {
 		return isAcceptingMessages;
 	}
 
+    
 	public IEnumerator SetBlendShapesOnMainThread(string messageString) {
 
+        
 		foreach (string message in messageString.Split (new Char[] { '|' }))
 		{
 			var cleanString = message.Replace (" ", "").Replace ("msg:", "");
 			var strArray  = cleanString.Split (new Char[] {'-'});
-
-			if (strArray.Length == 2) {
+            
+            if (strArray.Length == 2) {
 				var weight = float.Parse (strArray.GetValue (1).ToString());
 
 				var mappedShapeName = strArray.GetValue (0).ToString ().Replace ("_L", "Left").Replace ("_R", "Right");
@@ -95,6 +100,13 @@ public class NetworkMeshAnimator {
                 temp = weight;
             	//Debug.Log(index);
                 blendShapeList[index+1] = weight;
+
+                
+                if(!nameListBool){
+					blendShapeName.Add(mappedShapeName);
+				}
+                
+
                 //Debug.Log(mappedShapeName+"_"+weight);
 
                 if (index > -1) {
@@ -102,8 +114,10 @@ public class NetworkMeshAnimator {
 				}
 			}
 		}
+        nameListBool = true;
         //Debug.Log(blendShapeList.Length);
-
+        var a = blendShapeName.Count;
+        //Debug.Log(a);
         yield return null;
 	}
 }

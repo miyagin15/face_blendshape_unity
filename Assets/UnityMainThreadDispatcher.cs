@@ -33,9 +33,26 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
 
     public float[] face_list　= new float[65];
 
+    private bool nameListBool = false;
 
-	public void Update() {
+    public void Update() {
         var net = NetworkMeshAnimator.Instance;
+
+		if(!nameListBool){
+            var net1 = NetworkMeshAnimator.Instance;
+            var nameList = net1.blendShapeName;
+            Debug.Log(nameList);
+            Debug.Log(nameList.Count);
+            for (int i = 0; i < nameList.Count; i++)
+            {
+                Debug.Log(nameList[i]);
+				if(i>19){
+                    nameListBool = true;
+                }
+            }
+        }
+
+
         //eye_face = net.temp;
         face_list = net.blendShapeList;
         //Debug.Log(net.blendShapeList);
