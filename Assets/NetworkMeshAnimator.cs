@@ -10,8 +10,8 @@ public class NetworkMeshAnimator {
 	private UnityMainThreadDispatcher dispatcher;
 	private bool isAcceptingMessages = false;
 
-    public float[] eye;
-
+    public float[] blendShapeList=new float[100];
+    public float temp;
 
     private static NetworkMeshAnimator instance;
 
@@ -92,8 +92,8 @@ public class NetworkMeshAnimator {
 				var mappedShapeName = strArray.GetValue (0).ToString ().Replace ("_L", "Left").Replace ("_R", "Right");
 
 				var index = meshTarget.sharedMesh.GetBlendShapeIndex (mappedShapeName);
-
-            	eye[index] = weight;
+                temp = weight;
+                blendShapeList[index] = weight;
                 //Debug.Log(mappedShapeName+"_"+weight);
 
                 if (index > -1) {
@@ -101,8 +101,9 @@ public class NetworkMeshAnimator {
 				}
 			}
 		}
+        Debug.Log(blendShapeList);
 
-		yield return null;
+        yield return null;
 	}
 }
 
