@@ -31,14 +31,14 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
 
     public float eye_face;
 
-    public float[] face_list　= new float[55];
+    public float[] face_list　= new float[65];
 
 
 	public void Update() {
         var net = NetworkMeshAnimator.Instance;
-        eye_face = net.temp;
+        //eye_face = net.temp;
         face_list = net.blendShapeList;
-        Debug.Log(net.blendShapeList);
+        //Debug.Log(net.blendShapeList);
         lock(_executionQueue) {
 			while (_executionQueue.Count > 0) {
 				_executionQueue.Dequeue().Invoke();

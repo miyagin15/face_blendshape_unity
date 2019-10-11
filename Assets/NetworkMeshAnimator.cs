@@ -10,7 +10,7 @@ public class NetworkMeshAnimator {
 	private UnityMainThreadDispatcher dispatcher;
 	private bool isAcceptingMessages = false;
 
-    public float[] blendShapeList=new float[100];
+    public float[] blendShapeList=new float[65];
     public float temp;
 
     private static NetworkMeshAnimator instance;
@@ -101,7 +101,7 @@ public class NetworkMeshAnimator {
 				}
 			}
 		}
-        Debug.Log(blendShapeList);
+        //Debug.Log(blendShapeList.Length);
 
         yield return null;
 	}
