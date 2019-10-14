@@ -38,12 +38,17 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
 
         public string[] faceList = {"browOuterUpRight","mouthLowerDownLeft","eyeLookUpLeft","cheekPuff","eyeWideLeft","mouthUpperUpLeft","mouthPucker","mouthDimpleRight","mouthSmileRight","mouthShrugLower","eyeLookDownLeft","browOuterUpLeft","eyeBlinkLeft","mouthPressLeft","tongueOut","mouthFrownRight","jawLeft","mouthRight","cheekSquintRight","jawRight","mouthClose","mouthRollLower","eyeSquintLeft","eyeLookUpRight","mouthStretchRight","mouthPressRight","eyeBlinkRight","eyeSquintRight","eyeLookInRight","mouthLeft","mouthRollUpper","noseSneerLeft","eyeLookDownRight","browDownRight","browDownLeft","mouthStretchLeft","mouthDimpleLeft","mouthLowerDownRight","jawOpen","browInnerUp","mouthFunnel","mouthFrownLeft","eyeWideRight","jawForward","eyeLookInLeft","mouthShrugUpper","eyeLookOutLeft","eyeLookOutRight","mouthSmileLeft","cheekSquintLeft","mouthUpperUpRight","noseSneerRight"};
 
-        public  void SetDate(int order ,float data){
-            faceList[order] = data;
-            cheekPuff = data;
-            
+        public void SetDate(int order, float data)
+        {
+            //faceList[order] = data;
+            this.cheekPuff = data;
+            this.browDownLeft = 5.0f;
+            this.eyeLookUpLeft = 10.0f;
         }
-	}
+    }
+    public float browOuterUpRight, mouthLowerDownLeft, eyeLookUpLeft, cheekPuff, eyeWideLeft, mouthUpperUpLeft, mouthPucker, mouthDimpleRight, mouthSmileRight, mouthShrugLower, eyeLookDownLeft, browOuterUpLeft, eyeBlinkLeft, mouthPressLeft, tongueOut, mouthFrownRight, jawLeft, mouthRight, cheekSquintRight, jawRight, mouthClose, mouthRollLower, eyeSquintLeft, eyeLookUpRight, mouthStretchRight, mouthPressRight, eyeBlinkRight, eyeSquintRight, eyeLookInRight, mouthLeft, mouthRollUpper, noseSneerLeft, eyeLookDownRight, browDownRight, browDownLeft, mouthStretchLeft, mouthDimpleLeft, mouthLowerDownRight, jawOpen, browInnerUp, mouthFunnel, mouthFrownLeft, eyeWideRight, jawForward, eyeLookInLeft, mouthShrugUpper, eyeLookOutLeft, eyeLookOutRight, mouthSmileLeft, cheekSquintLeft, mouthUpperUpRight, noseSneerRight;
+    public string[] faceList = { "browOuterUpRight", "mouthLowerDownLeft", "eyeLookUpLeft", "cheekPuff", "eyeWideLeft", "mouthUpperUpLeft", "mouthPucker", "mouthDimpleRight", "mouthSmileRight", "mouthShrugLower", "eyeLookDownLeft", "browOuterUpLeft", "eyeBlinkLeft", "mouthPressLeft", "tongueOut", "mouthFrownRight", "jawLeft", "mouthRight", "cheekSquintRight", "jawRight", "mouthClose", "mouthRollLower", "eyeSquintLeft", "eyeLookUpRight", "mouthStretchRight", "mouthPressRight", "eyeBlinkRight", "eyeSquintRight", "eyeLookInRight", "mouthLeft", "mouthRollUpper", "noseSneerLeft", "eyeLookDownRight", "browDownRight", "browDownLeft", "mouthStretchLeft", "mouthDimpleLeft", "mouthLowerDownRight", "jawOpen", "browInnerUp", "mouthFunnel", "mouthFrownLeft", "eyeWideRight", "jawForward", "eyeLookInLeft", "mouthShrugUpper", "eyeLookOutLeft", "eyeLookOutRight", "mouthSmileLeft", "cheekSquintLeft", "mouthUpperUpRight", "noseSneerRight" };
+
     [SerializeField] FaceBlendShape faceBlend;
     public float[] face_list　= new float[65];
 
@@ -51,23 +56,43 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
 
     public string[] name_all=new string[65];
 
-    
-
-    /*
-	    public void start(){
-        faceblendshape = new FaceBlendShape();
-    }
-	 */
 
     public void Update() {
-        FaceBlendShape faceblendshape = new FaceBlendShape();
+        FaceBlendShape faceBlend = new FaceBlendShape();
         var net = NetworkMeshAnimator.Instance;
         var nameList = net.blendShapeName;
 
-		for (int i = 0; i < nameList.Count; i++){
-			faceblendshape.SetDate(i,net.blendShapeList[i]);
-		}
-        Debug.Log(faceblendshape.cheekPuff);
+        var dicShapeWeight = net.dic;
+
+        // for (int i = 0; i < faceList.Length;i++){
+
+        // 	{
+        // 		faceList[i] = faceList[i] +";"+dicShapeWeight["browOuterUpRight"];
+        // 	}
+        int i = 0;
+        foreach (KeyValuePair<string, float> pair in dicShapeWeight)
+        {
+
+            faceList[i]=(pair.Key + " : " + pair.Value);
+            i = i + 1;
+        }
+
+        // foreach (KeyValuePair<string, float> pair in dicShapeWeight)
+        // {
+
+        //     Debug.Log(pair.Key + " : " + pair.Value);
+        // }
+        // Debug.Log(faceBlend.faceList[0]);
+        //Debug.Log(dicShapeWeight[faceBlend.faceList[0]]);
+
+
+        // for (int i = 0; i < nameList.Count; i++){
+        //     faceBlend.SetDate(i,net.blendShapeList[i]);
+		// }
+        // faceBlend.cheekPuff = 0.0f;
+
+
+        //Debug.Log(faceBlend.cheekPuff);
 
 
 

@@ -16,7 +16,10 @@ public class NetworkMeshAnimator {
 
     private bool nameListBool = false;
 
+    public Dictionary<string, float> dic = new Dictionary<string, float>();
+
     private static NetworkMeshAnimator instance;
+
 
 	public static NetworkMeshAnimator Instance
 	{
@@ -85,8 +88,8 @@ public class NetworkMeshAnimator {
     
 	public IEnumerator SetBlendShapesOnMainThread(string messageString) {
 
-        
-		foreach (string message in messageString.Split (new Char[] { '|' }))
+    
+        foreach (string message in messageString.Split (new Char[] { '|' }))
 		{
 			var cleanString = message.Replace (" ", "").Replace ("msg:", "");
 			var strArray  = cleanString.Split (new Char[] {'-'});
@@ -105,7 +108,14 @@ public class NetworkMeshAnimator {
                 if(!nameListBool){
 					blendShapeName.Add(mappedShapeName);
 				}
+
+				if(dic.ContainsKey(mappedShapeName)) {
+                    dic[mappedShapeName] = weight;
+				}else{
+                    dic.Add(mappedShapeName, weight);
+                }
                 
+
 
                 //Debug.Log(mappedShapeName+"_"+weight);
 
@@ -114,6 +124,12 @@ public class NetworkMeshAnimator {
 				}
 			}
 		}
+
+        // foreach (KeyValuePair<string, float> pair in dic)
+        // {
+        //     Debug.Log(pair.Key + " : " + pair.Value);
+        // }
+        Debug.Log(dic.Count);
         nameListBool = true;
         //Debug.Log(blendShapeList.Length);
         var a = blendShapeName.Count;
