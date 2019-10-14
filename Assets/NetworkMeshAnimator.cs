@@ -88,8 +88,9 @@ public class NetworkMeshAnimator {
 
     
 	public IEnumerator SetBlendShapesOnMainThread(string messageString) {
+        //Debug.Log(messageString);
 
-    
+
         foreach (string message in messageString.Split (new Char[] { '|' }))
 		{
 			var cleanString = message.Replace (" ", "").Replace ("msg:", "");

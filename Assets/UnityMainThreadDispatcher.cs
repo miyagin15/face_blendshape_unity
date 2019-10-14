@@ -60,6 +60,39 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
     public string[] faceList= new string[55];
 
 
+    public GameObject head;
+    public SkinnedMeshRenderer facialExpression;
+    public float weight;
+    public int angry;
+    public int sad;
+    void Start()
+    {
+        //angry = facialExpression.sharedMesh.GetBlendShapeIndex("eye_angry"); // ここと...
+        //head = GameObject.Find("head");
+        facialExpression = GameObject.Find("BlendShapeTarget").GetComponent<SkinnedMeshRenderer>();
+        //facialExpression = GetComponent<SkinnedMeshRenderer>(); // ここの順序はこれで正しいのでしょうか?
+        // 上記の順序では「インスペクタであらかじめセットしたレンダラーからeye_angryのインデックスを取得」してから
+        // 「facialExpressionをこのオブジェクトにアタッチされたレンダラーで上書き」しています
+        // angryを取得するコードはGetComponent<SkinnedMeshRenderer>より後の方が自然な気がするのですが...
+
+        // angry = facialExpression.sharedMesh.GetBlendShapeIndex("eye_angry");
+
+        // メッシュが持つブレンドシェイプの名前をコンソールに出力してみる
+        var mesh = facialExpression.sharedMesh;
+        var shapeCount = mesh.blendShapeCount;
+        Debug.LogFormat("Mesh {0} has {1} shapes.", mesh.name, shapeCount);
+
+        var a = "";
+        for (var i = 0; i < shapeCount; i++)
+        {
+            Debug.LogFormat("\t{0}: {1}", i, mesh.GetBlendShapeName(i));
+            a += mesh.GetBlendShapeName(i);
+            a += ",";
+
+        }
+        Debug.Log(a);
+    }
+
     public void Update() {
         
         var net = NetworkMeshAnimator.Instance;
