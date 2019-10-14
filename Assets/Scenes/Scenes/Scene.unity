@@ -680,6 +680,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
       propertyPath: face_list.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -758,6 +762,214 @@ Prefab:
     - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
       propertyPath: eye_face
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[0]
+      value: browOuterUpRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[1]
+      value: mouthLowerDownLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[2]
+      value: eyeLookUpLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[3]
+      value: cheekPuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[4]
+      value: eyeWideLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[5]
+      value: mouthUpperUpLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[6]
+      value: mouthPucker
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[7]
+      value: mouthDimpleRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[8]
+      value: mouthSmileRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[9]
+      value: mouthShrugLower
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[10]
+      value: eyeLookDownLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[11]
+      value: browOuterUpLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[12]
+      value: eyeBlinkLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[13]
+      value: mouthPressLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[14]
+      value: tongueOut
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[15]
+      value: mouthFrownRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[16]
+      value: jawLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[17]
+      value: mouthRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[18]
+      value: cheekSquintRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[19]
+      value: jawRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[20]
+      value: mouthClose
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[21]
+      value: mouthRollLower
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[22]
+      value: eyeSquintLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[23]
+      value: eyeLookUpRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[24]
+      value: mouthStretchRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[25]
+      value: mouthPressRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[26]
+      value: eyeBlinkRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[27]
+      value: eyeSquintRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[28]
+      value: eyeLookInRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[29]
+      value: mouthLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[30]
+      value: mouthRollUpper
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[31]
+      value: noseSneerLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[32]
+      value: eyeLookDownRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[33]
+      value: browDownRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[34]
+      value: browDownLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[35]
+      value: mouthStretchLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[36]
+      value: mouthDimpleLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[37]
+      value: mouthLowerDownRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[38]
+      value: jawOpen
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[39]
+      value: browInnerUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[40]
+      value: mouthFunnel
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[41]
+      value: mouthFrownLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[42]
+      value: eyeWideRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[43]
+      value: jawForward
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[44]
+      value: eyeLookInLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[45]
+      value: mouthShrugUpper
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[46]
+      value: eyeLookOutLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[47]
+      value: eyeLookOutRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[48]
+      value: mouthSmileLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[49]
+      value: cheekSquintLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[50]
+      value: mouthUpperUpRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464956, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}
+      propertyPath: faceList.Array.data[51]
+      value: noseSneerRight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a749df5e56f6422ba9fe64d83915a89, type: 2}

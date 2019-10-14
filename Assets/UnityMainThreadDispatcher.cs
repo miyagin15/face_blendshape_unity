@@ -18,6 +18,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 /// Author: Pim de Witte (pimdewitte.com) and contributors
 /// <summary>
@@ -29,48 +30,50 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
 	private static readonly Queue<Action> _executionQueue = new Queue<Action>();
 
 
-    public float eye_face;
+    // public float eye_face;
 
-    [System.Serializable]
-    class FaceBlendShape
-    {
-        public float browOuterUpRight, mouthLowerDownLeft, eyeLookUpLeft, cheekPuff, eyeWideLeft, mouthUpperUpLeft, mouthPucker, mouthDimpleRight, mouthSmileRight, mouthShrugLower, eyeLookDownLeft, browOuterUpLeft, eyeBlinkLeft, mouthPressLeft, tongueOut, mouthFrownRight, jawLeft, mouthRight, cheekSquintRight, jawRight, mouthClose, mouthRollLower, eyeSquintLeft, eyeLookUpRight, mouthStretchRight, mouthPressRight, eyeBlinkRight, eyeSquintRight, eyeLookInRight, mouthLeft, mouthRollUpper, noseSneerLeft, eyeLookDownRight, browDownRight, browDownLeft, mouthStretchLeft, mouthDimpleLeft, mouthLowerDownRight, jawOpen, browInnerUp, mouthFunnel, mouthFrownLeft, eyeWideRight, jawForward, eyeLookInLeft, mouthShrugUpper, eyeLookOutLeft, eyeLookOutRight, mouthSmileLeft, cheekSquintLeft, mouthUpperUpRight, noseSneerRight;
+    // [System.Serializable]
+    // class FaceBlendShape
+    // {
+    //     public float browOuterUpRight, mouthLowerDownLeft, eyeLookUpLeft, cheekPuff, eyeWideLeft, mouthUpperUpLeft, mouthPucker, mouthDimpleRight, mouthSmileRight, mouthShrugLower, eyeLookDownLeft, browOuterUpLeft, eyeBlinkLeft, mouthPressLeft, tongueOut, mouthFrownRight, jawLeft, mouthRight, cheekSquintRight, jawRight, mouthClose, mouthRollLower, eyeSquintLeft, eyeLookUpRight, mouthStretchRight, mouthPressRight, eyeBlinkRight, eyeSquintRight, eyeLookInRight, mouthLeft, mouthRollUpper, noseSneerLeft, eyeLookDownRight, browDownRight, browDownLeft, mouthStretchLeft, mouthDimpleLeft, mouthLowerDownRight, jawOpen, browInnerUp, mouthFunnel, mouthFrownLeft, eyeWideRight, jawForward, eyeLookInLeft, mouthShrugUpper, eyeLookOutLeft, eyeLookOutRight, mouthSmileLeft, cheekSquintLeft, mouthUpperUpRight, noseSneerRight;
 
-        public string[] faceList = {"browOuterUpRight","mouthLowerDownLeft","eyeLookUpLeft","cheekPuff","eyeWideLeft","mouthUpperUpLeft","mouthPucker","mouthDimpleRight","mouthSmileRight","mouthShrugLower","eyeLookDownLeft","browOuterUpLeft","eyeBlinkLeft","mouthPressLeft","tongueOut","mouthFrownRight","jawLeft","mouthRight","cheekSquintRight","jawRight","mouthClose","mouthRollLower","eyeSquintLeft","eyeLookUpRight","mouthStretchRight","mouthPressRight","eyeBlinkRight","eyeSquintRight","eyeLookInRight","mouthLeft","mouthRollUpper","noseSneerLeft","eyeLookDownRight","browDownRight","browDownLeft","mouthStretchLeft","mouthDimpleLeft","mouthLowerDownRight","jawOpen","browInnerUp","mouthFunnel","mouthFrownLeft","eyeWideRight","jawForward","eyeLookInLeft","mouthShrugUpper","eyeLookOutLeft","eyeLookOutRight","mouthSmileLeft","cheekSquintLeft","mouthUpperUpRight","noseSneerRight"};
+    //     public string[] faceList = {"browOuterUpRight","mouthLowerDownLeft","eyeLookUpLeft","cheekPuff","eyeWideLeft","mouthUpperUpLeft","mouthPucker","mouthDimpleRight","mouthSmileRight","mouthShrugLower","eyeLookDownLeft","browOuterUpLeft","eyeBlinkLeft","mouthPressLeft","tongueOut","mouthFrownRight","jawLeft","mouthRight","cheekSquintRight","jawRight","mouthClose","mouthRollLower","eyeSquintLeft","eyeLookUpRight","mouthStretchRight","mouthPressRight","eyeBlinkRight","eyeSquintRight","eyeLookInRight","mouthLeft","mouthRollUpper","noseSneerLeft","eyeLookDownRight","browDownRight","browDownLeft","mouthStretchLeft","mouthDimpleLeft","mouthLowerDownRight","jawOpen","browInnerUp","mouthFunnel","mouthFrownLeft","eyeWideRight","jawForward","eyeLookInLeft","mouthShrugUpper","eyeLookOutLeft","eyeLookOutRight","mouthSmileLeft","cheekSquintLeft","mouthUpperUpRight","noseSneerRight"};
 
-        public void SetDate(int order, float data)
-        {
-            //faceList[order] = data;
-            this.cheekPuff = data;
-            this.browDownLeft = 5.0f;
-            this.eyeLookUpLeft = 10.0f;
-        }
-    }
-    public float browOuterUpRight, mouthLowerDownLeft, eyeLookUpLeft, cheekPuff, eyeWideLeft, mouthUpperUpLeft, mouthPucker, mouthDimpleRight, mouthSmileRight, mouthShrugLower, eyeLookDownLeft, browOuterUpLeft, eyeBlinkLeft, mouthPressLeft, tongueOut, mouthFrownRight, jawLeft, mouthRight, cheekSquintRight, jawRight, mouthClose, mouthRollLower, eyeSquintLeft, eyeLookUpRight, mouthStretchRight, mouthPressRight, eyeBlinkRight, eyeSquintRight, eyeLookInRight, mouthLeft, mouthRollUpper, noseSneerLeft, eyeLookDownRight, browDownRight, browDownLeft, mouthStretchLeft, mouthDimpleLeft, mouthLowerDownRight, jawOpen, browInnerUp, mouthFunnel, mouthFrownLeft, eyeWideRight, jawForward, eyeLookInLeft, mouthShrugUpper, eyeLookOutLeft, eyeLookOutRight, mouthSmileLeft, cheekSquintLeft, mouthUpperUpRight, noseSneerRight;
-    public string[] faceList = { "browOuterUpRight", "mouthLowerDownLeft", "eyeLookUpLeft", "cheekPuff", "eyeWideLeft", "mouthUpperUpLeft", "mouthPucker", "mouthDimpleRight", "mouthSmileRight", "mouthShrugLower", "eyeLookDownLeft", "browOuterUpLeft", "eyeBlinkLeft", "mouthPressLeft", "tongueOut", "mouthFrownRight", "jawLeft", "mouthRight", "cheekSquintRight", "jawRight", "mouthClose", "mouthRollLower", "eyeSquintLeft", "eyeLookUpRight", "mouthStretchRight", "mouthPressRight", "eyeBlinkRight", "eyeSquintRight", "eyeLookInRight", "mouthLeft", "mouthRollUpper", "noseSneerLeft", "eyeLookDownRight", "browDownRight", "browDownLeft", "mouthStretchLeft", "mouthDimpleLeft", "mouthLowerDownRight", "jawOpen", "browInnerUp", "mouthFunnel", "mouthFrownLeft", "eyeWideRight", "jawForward", "eyeLookInLeft", "mouthShrugUpper", "eyeLookOutLeft", "eyeLookOutRight", "mouthSmileLeft", "cheekSquintLeft", "mouthUpperUpRight", "noseSneerRight" };
+    //     public void SetDate(int order, float data)
+    //     {
+    //         //faceList[order] = data;
+    //         this.cheekPuff = data;
+    //         this.browDownLeft = 5.0f;
+    //         this.eyeLookUpLeft = 10.0f;
+    //     }
+    // }
+    // [SerializeField] FaceBlendShape faceBlend;
+    // public float[] face_list　= new float[65];
 
-    [SerializeField] FaceBlendShape faceBlend;
-    public float[] face_list　= new float[65];
+    // private bool nameListBool = false;
 
-    private bool nameListBool = false;
+    // public string[] name_all=new string[65];
 
-    public string[] name_all=new string[65];
+
+    //public float browOuterUpRight, mouthLowerDownLeft, eyeLookUpLeft, cheekPuff, eyeWideLeft, mouthUpperUpLeft, mouthPucker, mouthDimpleRight, mouthSmileRight, mouthShrugLower, eyeLookDownLeft, browOuterUpLeft, eyeBlinkLeft, mouthPressLeft, tongueOut, mouthFrownRight, jawLeft, mouthRight, cheekSquintRight, jawRight, mouthClose, mouthRollLower, eyeSquintLeft, eyeLookUpRight, mouthStretchRight, mouthPressRight, eyeBlinkRight, eyeSquintRight, eyeLookInRight, mouthLeft, mouthRollUpper, noseSneerLeft, eyeLookDownRight, browDownRight, browDownLeft, mouthStretchLeft, mouthDimpleLeft, mouthLowerDownRight, jawOpen, browInnerUp, mouthFunnel, mouthFrownLeft, eyeWideRight, jawForward, eyeLookInLeft, mouthShrugUpper, eyeLookOutLeft, eyeLookOutRight, mouthSmileLeft, cheekSquintLeft, mouthUpperUpRight, noseSneerRight;
+    //public string[] faceList = { "browOuterUpRight", "mouthLowerDownLeft", "eyeLookUpLeft", "cheekPuff", "eyeWideLeft", "mouthUpperUpLeft", "mouthPucker", "mouthDimpleRight", "mouthSmileRight", "mouthShrugLower", "eyeLookDownLeft", "browOuterUpLeft", "eyeBlinkLeft", "mouthPressLeft", "tongueOut", "mouthFrownRight", "jawLeft", "mouthRight", "cheekSquintRight", "jawRight", "mouthClose", "mouthRollLower", "eyeSquintLeft", "eyeLookUpRight", "mouthStretchRight", "mouthPressRight", "eyeBlinkRight", "eyeSquintRight", "eyeLookInRight", "mouthLeft", "mouthRollUpper", "noseSneerLeft", "eyeLookDownRight", "browDownRight", "browDownLeft", "mouthStretchLeft", "mouthDimpleLeft", "mouthLowerDownRight", "jawOpen", "browInnerUp", "mouthFunnel", "mouthFrownLeft", "eyeWideRight", "jawForward", "eyeLookInLeft", "mouthShrugUpper", "eyeLookOutLeft", "eyeLookOutRight", "mouthSmileLeft", "cheekSquintLeft", "mouthUpperUpRight", "noseSneerRight" };
+    public string[] faceList= new string[55];
 
 
     public void Update() {
-        FaceBlendShape faceBlend = new FaceBlendShape();
+        
         var net = NetworkMeshAnimator.Instance;
         var nameList = net.blendShapeName;
 
         var dicShapeWeight = net.dic;
-
+        var dict_sorted = dicShapeWeight.OrderBy((x) => x.Key);  //昇順
         // for (int i = 0; i < faceList.Length;i++){
 
         // 	{
         // 		faceList[i] = faceList[i] +";"+dicShapeWeight["browOuterUpRight"];
         // 	}
         int i = 0;
-        foreach (KeyValuePair<string, float> pair in dicShapeWeight)
+        foreach (KeyValuePair<string, float> pair in dict_sorted)
         {
 
             faceList[i]=(pair.Key + " : " + pair.Value);
@@ -120,7 +123,7 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
 
 
         //eye_face = net.temp;
-        face_list = net.blendShapeList;
+        //face_list = net.blendShapeList;
         //Debug.Log(net.blendShapeList);
         lock(_executionQueue) {
 			while (_executionQueue.Count > 0) {

@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
 public class NetworkMeshAnimator {
 
 	private UDPServer listner;
@@ -129,7 +130,7 @@ public class NetworkMeshAnimator {
         // {
         //     Debug.Log(pair.Key + " : " + pair.Value);
         // }
-        Debug.Log(dic.Count);
+        //Debug.Log(dic.Count);
         nameListBool = true;
         //Debug.Log(blendShapeList.Length);
         var a = blendShapeName.Count;
