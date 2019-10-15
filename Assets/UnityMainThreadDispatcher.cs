@@ -65,7 +65,14 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
     public float weight;
     public int angry;
     public int sad;
-    void Start()
+
+    public float[] beforeValue = new float[62];
+	public float[] nowValue= new float[62];
+
+    public int num = 0;
+    public int loopNum = 10;
+    /* 
+	 void Start()
     {
         //angry = facialExpression.sharedMesh.GetBlendShapeIndex("eye_angry"); // ここと...
         //head = GameObject.Find("head");
@@ -92,6 +99,7 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
         }
         Debug.Log(a);
     }
+	*/
 
     public void Update() {
         
@@ -99,19 +107,35 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
         var nameList = net.blendShapeName;
 
         var dicShapeWeight = net.dic;
-        var dict_sorted = dicShapeWeight.OrderBy((x) => x.Key);  //昇順
+        var dict_sorted = dicShapeWeight.OrderBy((x) => x.Key);  //昇順に変更
         // for (int i = 0; i < faceList.Length;i++){
 
         // 	{
         // 		faceList[i] = faceList[i] +";"+dicShapeWeight["browOuterUpRight"];
         // 	}
         int i = 0;
+        num += 1;
+        if (num % loopNum != 0) {
+            return;
+        }
+
         foreach (KeyValuePair<string, float> pair in dict_sorted)
         {
-
-            faceList[i]=(pair.Key + " : " + pair.Value);
+            beforeValue[i] = nowValue[i];
+            faceList[i] = (pair.Key + " : " + pair.Value);
+            nowValue[i] = pair.Value;
+            // if(nowValue[i]>beforeValue[i]){
+            //     Debug.Log(pair.Key + " : " + pair.Value);
+            // }
+            if ((nowValue[i] - beforeValue[i])>30)
+            {
+                Debug.Log(pair.Key + " : " + pair.Value);
+            }
             i = i + 1;
         }
+        
+		//Debug.Log(dicShapeWeight["browOuterUpRight"]);
+
 
         // foreach (KeyValuePair<string, float> pair in dicShapeWeight)
         // {
@@ -124,7 +148,7 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
 
         // for (int i = 0; i < nameList.Count; i++){
         //     faceBlend.SetDate(i,net.blendShapeList[i]);
-		// }
+        // }
         // faceBlend.cheekPuff = 0.0f;
 
 
