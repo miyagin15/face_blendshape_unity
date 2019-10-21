@@ -127,9 +127,13 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
             // if(nowValue[i]>beforeValue[i]){
             //     Debug.Log(pair.Key + " : " + pair.Value);
             // }
-            if ((nowValue[i] - beforeValue[i])>30)
+            if ((nowValue[i] - beforeValue[i])>10)
             {
-                Debug.Log(pair.Key + " : " + pair.Value);
+				if(pair.Key.Contains("eye")){
+                    return;
+                }
+                Debug.Log(pair.Key);
+                //Debug.Log(pair.Key + " : " + pair.Value);
             }
             i = i + 1;
         }
