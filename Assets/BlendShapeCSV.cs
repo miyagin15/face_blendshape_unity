@@ -45,7 +45,11 @@ public class BlendShapeCSV : MonoBehaviour {
         // // StreamReaderを閉じる
         // sr.Close();
     }
+    public float[] beforeValue = new float[62];
+    public float[] nowValue = new float[62];
     int blendshapeint = 0;
+	bool kaigyo = false;
+    int roop = 0;
     // Update is called once per frame
     void Update () {
         var net = NetworkMeshAnimator.Instance;
@@ -53,46 +57,64 @@ public class BlendShapeCSV : MonoBehaviour {
 
         var dicShapeWeight = net.dic;
         var dict_sorted = dicShapeWeight.OrderBy((x) => x.Key);  //昇順に変更
-		
-        foreach (KeyValuePair<string, float> pair in dict_sorted)
-        {
-
-            CSVblendshape = CSVblendshape +","+(pair.Value).ToString("f1");
-			if(blendshapeint == 1 ){
-                blendShapeList=blendShapeList+pair.Key + ",";
-            }
-            //Debug.Log(pair.Key + " : " + pair.Value);
-            //beforeValue[i] = nowValue[i];
-            // faceList[i] = (pair.Key + " : " + pair.Value);
-            // nowValue[i] = pair.Value;
-            // // if(nowValue[i]>beforeValue[i]){
-            // //     Debug.Log(pair.Key + " : " + pair.Value);
-            // // }
-            // if ((nowValue[i] - beforeValue[i]) > 10)
-            // {
-            //     if (pair.Key.Contains("eye"))
-            //     {
-            //         return;
-            //     }
-            //     Debug.Log(pair.Key);
-            //     //Debug.Log(pair.Key + " : " + pair.Value);
-            // }
-            // i = i + 1;
-            if (pair.Key.Contains("browOuterUpRight"))
+        int i = 0;
+        int countSame = 0;
+        roop = roop + 1;
+        if(roop %3==0){
+            foreach (KeyValuePair<string, float> pair in dict_sorted)
             {
-                blendshapeint = blendshapeint + 1;
-                CSVblendshape = CSVblendshape + "\n";
+                beforeValue[i] = nowValue[i];
+                nowValue[i] = pair.Value;
+                i = i + 1;
+                if ((nowValue[i] == beforeValue[i]))
+                {
+                    countSame = countSame + 1;
+                }
+                if (countSame > 50)
+                {
+                    Debug.Log("no face ");
+                    return;
+                }
             }
-        }
-        Debug.Log(blendshapeint);
-		if(blendshapeint ==100){
-            StreamWriter sw = new StreamWriter(@"BlendShapeData.csv", false, Encoding.GetEncoding("Shift_JIS"));
-            // ヘッダー出力
-            sw.WriteLine(blendShapeList);
-            // データ出力
-            sw.WriteLine(CSVblendshape);
-            // StreamWriterを閉じる
-            sw.Close();
+            foreach (KeyValuePair<string, float> pair in dict_sorted)
+            {
+                if (blendshapeint == 0)
+                {
+                    blendShapeList = blendShapeList + pair.Key + ",";
+                }
+
+                if (CSVblendshape == "")
+                {
+                    CSVblendshape = (pair.Value).ToString("f1");
+                }
+                else if (pair.Key.Contains("tongueOut"))
+                {
+                    CSVblendshape = CSVblendshape + "," + (pair.Value).ToString("f1") + "\n";
+                    blendshapeint = blendshapeint + 1;
+                    kaigyo = true;
+                    return;
+                }
+                else if (kaigyo)
+                {
+                    CSVblendshape = CSVblendshape + (pair.Value).ToString("f1");
+                    kaigyo = false;
+                }
+                else
+                {
+                    CSVblendshape = CSVblendshape + "," + (pair.Value).ToString("f1");
+                }
+
+            }
 		}
+
     }
+	public void makeCSV(){
+        StreamWriter sw = new StreamWriter(@"BlendShapeData.csv", false, Encoding.GetEncoding("Shift_JIS"));
+        // ヘッダー出力
+        sw.WriteLine(blendShapeList);
+        // データ出力
+        sw.WriteLine(CSVblendshape);
+        // StreamWriterを閉じる
+        sw.Close();
+	}
 }

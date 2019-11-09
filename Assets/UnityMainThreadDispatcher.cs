@@ -132,7 +132,7 @@ public class UnityMainThreadDispatcher : MonoBehaviour {
 				if(pair.Key.Contains("eye")){
                     return;
                 }
-                Debug.Log(pair.Key);
+                //Debug.Log(pair.Key);
                 //Debug.Log(pair.Key + " : " + pair.Value);
             }
             i = i + 1;
